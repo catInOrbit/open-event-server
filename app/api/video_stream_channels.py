@@ -1,6 +1,10 @@
 from app.models.video_stream import VideoStreamChannel
+from flask_rest_jsonapi import ResourceDetail, ResourceList, ResourceRelationship
+
 
 class VideoStreamChannels(ResourceDetail):
+    def before_get_object(self, view_kwargs):
+        
     schema = VideoStreamSchema
     decorators = (jwt_optional,)
     data_layer = {
@@ -15,3 +19,4 @@ class VideoStreamChannels(ResourceDetail):
         },
     }
 
+class VideoStreamChannelsList(ResourceList)
