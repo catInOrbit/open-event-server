@@ -1863,6 +1863,9 @@ api.route(ImportJobDetail, 'import_job_detail', '/import-jobs/<int:id>')
 
 # Video Streams
 api.route(VideoStreamChannel, 'video_stream_channel', '/channels_mapping/<int:id>', '/channels_mapping/video-streams/<int:video_stream_id>/video-channels/<int:video_channel_id>')
+
+api.route(VideoStreamChannelRelationship, 'video_stream_channel', '/channels_mapping/<int:id>', '/channels_mapping/video-streams/<int:video_stream_id>/video-channels/<int:video_channel_id>')
+
 api.route(VideoStreamList, 'video_stream_list', '/video-streams')
 api.route(
     VideoStreamDetail,
