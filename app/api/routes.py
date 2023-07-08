@@ -241,6 +241,7 @@ from app.api.tracks import (
     TrackRelationshipOptional,
     TrackRelationshipRequired,
 )
+from app.api.translation_channels import TranslationChannelsList, TranslationChannelsListPost
 from app.api.user_emails import (
     UserEmailDetail,
     UserEmailList,
@@ -1862,9 +1863,9 @@ api.route(ImportJobList, 'import_job_list', '/import-jobs')
 api.route(ImportJobDetail, 'import_job_detail', '/import-jobs/<int:id>')
 
 # Video Streams
-api.route(VideoStreamChannel, 'video_stream_channel', '/channels_mapping/<int:id>', '/channels_mapping/video-streams/<int:video_stream_id>/video-channels/<int:video_channel_id>')
+api.route(TranslationChannelsList, 'translation_channels_list', '/translation_channels/<int:id>', '/translation_channels/video-streams/<int:video_stream_id>/video-channels/<int:video_channel_id>')
 
-api.route(VideoStreamChannelRelationship, 'video_stream_channel', '/channels_mapping/<int:id>', '/channels_mapping/video-streams/<int:video_stream_id>/video-channels/<int:video_channel_id>')
+api.route(TranslationChannelsListPost, 'translation_channels_list_post', '/translation_channels_list')
 
 api.route(VideoStreamList, 'video_stream_list', '/video-streams')
 api.route(

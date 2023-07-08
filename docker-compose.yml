@@ -8,7 +8,7 @@ x-environment-vars: &environment-vars
   ADMIN_PASSWORD: "@{ADMIN_PASSWORD}"
 
 x-defaults: &defaults
-  image: oes_server:custom
+  image: oe_server:dev
   restart: unless-stopped
   env_file:
     - .env
