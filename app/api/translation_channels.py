@@ -1,7 +1,7 @@
 from app.api.schema.translation_channels import TranslationChannelSchema
 from app.models.translation_channels import TranslationChannel
 from app.models import db
-from flask_rest_jsonapi import ResourceList
+from flask_rest_jsonapi import ResourceList, ResourceRelationship,ResourceDetail
 
 class TranslationChannelsList(ResourceList):
     
@@ -34,3 +34,21 @@ class TranslationChannelsListPost(ResourceList):
         'methods': {
         }
     } 
+
+class TranslationChannelsDetail(ResourceDetail):
+    schema = TranslationChannelSchema
+    data_layer = {
+        'session': db.session,
+        'model': TranslationChannel,
+        'methods': {
+        },
+    }
+    
+class TranslationChannelsRelationship(ResourceRelationship):
+    schema = TranslationChannelSchema
+    data_layer = {
+        'session': db.session,
+        'model': TranslationChannel,
+        'methods': {
+        },
+    }

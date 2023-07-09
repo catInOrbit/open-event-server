@@ -241,7 +241,6 @@ from app.api.tracks import (
     TrackRelationshipOptional,
     TrackRelationshipRequired,
 )
-from app.api.translation_channels import TranslationChannelsList, TranslationChannelsListPost
 from app.api.user_emails import (
     UserEmailDetail,
     UserEmailList,
@@ -1863,9 +1862,23 @@ api.route(ImportJobList, 'import_job_list', '/import-jobs')
 api.route(ImportJobDetail, 'import_job_detail', '/import-jobs/<int:id>')
 
 # Video Streams
-api.route(TranslationChannelsList, 'translation_channels_list', '/translation_channels/<int:id>', '/translation_channels/video-streams/<int:video_stream_id>/video-channels/<int:video_channel_id>')
+from app.api.translation_channels import TranslationChannelsList, TranslationChannelsListPost, TranslationChannelsDetail, TranslationChannelsRelationship
 
-api.route(TranslationChannelsListPost, 'translation_channels_list_post', '/translation_channels_list')
+api.route(TranslationChannelsList, 'translation_channels_list', '/translation_channels/video-streams/<int:video_stream_id>/video-channels/<int:video_channel_id>')
+
+api.route(TranslationChannelsListPost, 'translation_channels_list_post', '/translation_channels')
+
+api.route(TranslationChannelsDetail, 'translation_channels_detai', '/translation_channels/<int:id>')
+
+api.route(TranslationChannelsRelationship, 'translation_channels_stream', '/translation_channels/<int:id>/relationships/video-stream')
+
+api.route(TranslationChannelsRelationship, 'translation_channels_channel', '/translation_channels/<int:id>/relationships/video-channel')
+
+api.route(
+    VideoStreamRelationship,
+    'video_stream_translation_channels',
+    '/video-streams/<int:id>/relationships/video-tream-translation-channels',
+)
 
 api.route(VideoStreamList, 'video_stream_list', '/video-streams')
 api.route(
@@ -1903,6 +1916,8 @@ api.route(
     'video_stream_moderators',
     '/video-streams/<int:id>/relationships/video-stream-moderators',
 )
+
+
 api.route(
     VideoStreamRelationship,
     'video_stream_recordings',

@@ -39,7 +39,7 @@ from app.models.speaker import Speaker
 from app.models.sponsor import Sponsor
 from app.models.track import Track
 from app.models.user import MODERATOR, REGISTRAR, TRACK_ORGANIZER
-
+from app.models.translation_channels import TranslationChannel
 # User Permissions
 from app.models.user_permission import UserPermission
 from app.models.video_channel import VideoChannel
@@ -429,10 +429,16 @@ def populate():
         name='Libre Work',
         defaults={'url': 'https://2d.freiland-potsdam.de/'},
     )
-
+    
+    print("--------geageaugaehugieahuigaeh")
+    get_or_create(
+        TranslationChannel
+    )
+    
     db.session.commit()
 
 
 if __name__ == '__main__':
+        
     with current_app.app_context():
         populate()

@@ -15,6 +15,6 @@ class TranslationChannel(db.Model):
     channel_id = db.Column(
         db.Integer, db.ForeignKey('video_channels.id', ondelete='CASCADE')
     )
-    channel = db.relationship(VideoChannel, backref='streams')
+    channel = db.relationship(VideoChannel, backref='stream_channels')
     name=db.Column(db.String)
     url = db.Column(db.String)
