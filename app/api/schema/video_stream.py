@@ -57,16 +57,6 @@ class VideoStreamSchema(Schema):
         type_='microlocation',
     )
     
-    translation_channel = Relationship(
-        many=True,
-        self_view='v1.video_stream_translation_channels',
-        self_view_kwargs={'id': '<id>'},
-        related_view='v1.translation_channels_list',
-        related_view_kwargs={'video_stream_id': '<id>'},
-        schema='TranslationChannelSchema',
-        type_='translation_channels',
-    )
-    
     event = Relationship(
         self_view='v1.video_stream_event',
         self_view_kwargs={'id': '<id>'},
@@ -103,17 +93,6 @@ class VideoStreamSchema(Schema):
         type_='video-stream-moderator',
     )
     
-    #TODO: TESTING FOR VIDOE_CHANEL SCHEMA
-    translation_channels = Relationship(
-        many=True,
-        self_view='v1.video_stream_moderators',
-        self_view_kwargs={'id': '<id>'},
-        related_view='v1.video_stream_moderator_list',
-        related_view_kwargs={'video_stream_id': '<id>'},
-        schema='VideoStreamModeratorSchema',
-        type_='video-stream-moderator',
-    )
-
 
 class ChatmosphereSchema(Schema):
     class Meta:

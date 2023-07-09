@@ -1864,21 +1864,35 @@ api.route(ImportJobDetail, 'import_job_detail', '/import-jobs/<int:id>')
 # Video Streams
 from app.api.translation_channels import TranslationChannelsList, TranslationChannelsListPost, TranslationChannelsDetail, TranslationChannelsRelationship
 
-api.route(TranslationChannelsList, 'translation_channels_list', '/translation_channels/video-streams/<int:video_stream_id>/video-channels/<int:video_channel_id>')
+
+# api.route(TranslationChannelsList, 'translation_channels_list', '/translation_channels/video-streams/<int:video_stream_id>')
+
+api.route(TranslationChannelsList, 'translation_channels_list', "/translation_channels", '/video-streams/<int:video_stream_id>/translation_channels')
 
 api.route(TranslationChannelsListPost, 'translation_channels_list_post', '/translation_channels')
 
-api.route(TranslationChannelsDetail, 'translation_channels_detai', '/translation_channels/<int:id>')
+api.route(TranslationChannelsDetail, 'translation_channels_detail', '/translation_channels/<int:id>')
 
-api.route(TranslationChannelsRelationship, 'translation_channels_stream', '/translation_channels/<int:id>/relationships/video-stream')
+api.route(TranslationChannelsRelationship, 'translation_channels_video_stream', '/translation_channel/<int:id>/relationships/video-stream')
 
-api.route(TranslationChannelsRelationship, 'translation_channels_channel', '/translation_channels/<int:id>/relationships/video-channel')
+api.route(TranslationChannelsRelationship, 'translation_channels_channel', '/translation_channel/<int:id>/relationships/channel')
 
-api.route(
-    VideoStreamRelationship,
-    'video_stream_translation_channels',
-    '/video-streams/<int:id>/relationships/video-tream-translation-channels',
-)
+# api.route(
+#     VideoStreamRelationship,
+#     'video_stream_translation_channels',
+#     '/video-streams/<int:video_stream_id>/relationships/video-tream-translation-channels',
+# )
+
+# api.route(TranslationChannelsList, 'translation_channels_list', '/video-streams/<int:video_stream_id>/translation_channels')
+
+# api.route(TranslationChannelsListPost, 'translation_channels_list_post', '/translation_channels')
+
+# api.route(TranslationChannelsDetail, 'translation_channels_detail', '/translation_channels/<int:id>')
+
+# api.route(TranslationChannelsRelationship, 'translation_channels_stream', '/translation_channels/<int:id>/relationships/video-stream')
+
+# api.route(TranslationChannelsRelationship, 'translation_channels_channel', '/translation_channels/<int:id>/relationships/video-channel')
+
 
 api.route(VideoStreamList, 'video_stream_list', '/video-streams')
 api.route(
