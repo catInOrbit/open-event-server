@@ -1,25 +1,16 @@
-# Group Video Streams
-Data related to video streams table
+# Translation Channels
+Data related to video streams translation table
 
 | Parameter | Description | Type | Required | Public |
 |:----------|-------------|------|----------|--------|
-| `name` | Name of Video Stream | string | **yes** | **yes** |
-| `url` | URL of Video Stream | Url | **yes** | **yes** |
-| `password` | Password of video stream | string | - | - |
-| `additional_information` | Addition Description about Video Stream | string | - | - |
-| `extra` | Extra options on video streams like autoplay, loop or bbb_options | - | - | - |
-
-## Video streams [/v1/video-streams{?page%5bsize%5d,page%5bnumber%5d,sort,filter}]
-+ Parameters
-    + page%5bsize%5d (optional, integer, `10`) - Maximum number of resources in a single paginated response.
-    + page%5bnumber%5d (optional, integer, `2`) - Page number to fetched for the paginated response.
-    + sort (optional, string, `url`) - Sort the resources according to the given attribute in ascending order. Append '-' to sort in descending order.
-    + filter (optional, string, `[]`) - Filter according to the flask-rest-jsonapi filtering system. Please refer: http://flask-rest-jsonapi.readthedocs.io/en/latest/filtering.html for more.
+| `name` | Name of video stream channel | string | **yes** | **yes** |
+| `url` | URL of translation channel | Url | **yes** | **yes** |
+| `video_stream_id` | Id of video stream  | string | - | - |
+| `channel_id` | Id of main channel inside the video stream | string | - | - |
 
 
-
-### List all Video Streams [GET]
-Get a list of all Video Streams
+### List all Video Stream Channel [v1/translation_channels] [GET]
+Get a list of all available translation channels in video stream
 
 + Request
 
@@ -32,22 +23,51 @@ Get a list of all Video Streams
 
 + Response 200 (application/vnd.api+json)
 
+{
+    "data": [
         {
-            "data": [],
+            "type": "translation_channel",
+            "relationships": {
+                "channel": {
+                    "links": {
+                        "self": "/v1/translation_channel/2/relationships/channels",
+                        "related": "/v1/video-channels/2"
+                    }
+                },
+                "video-stream": {
+                    "links": {
+                        "self": "/v1/translation_channel/2/relationships/video-stream",
+                        "related": "/v1/video-streams/26"
+                    }
+                }
+            },
+            "id": 2,
+            "attributes": {
+                "url": "yt2.test",
+                "name": "yt2"
+            },
             "links": {
-                "self": "/v1/video-streams?page%5Bsize%5D=10&page%5Bnumber%5D=2&sort=url&filter=%5B%5D"
-            },
-            "meta": {
-                "count": 0
-            },
-            "jsonapi": {
-                "version": "1.0"
+                "self": "/v1/translation_channels/2"
             }
         }
+    ],
+    "links": {
+        "self": "/v1/translation_channels"
+    },
+    "meta": {
+        "count": 1
+    },
+    "jsonapi": {
+        "version": "1.0"
+    }
+}
 
 
-### Save list of translation channels [POST]
+
+### Save list of translation channels [v1/video-streams/id/translation_channels] [POST]
 Save list of translation channels to db
++ Parameters
+    + id: id of the video stream
 
 + Request
 
@@ -88,7 +108,9 @@ Save list of translation channels to db
 + Response 201 (application/vnd.api+json)
 
 
-### Update a specific translation channel [PATCH]
+### Update a specific translation channel [/v1/translation_channels/id] [PATCH]
++ Parameters
+    + id: id of the translation channel
 Update translation channel in a stream to db
 
 + Request
