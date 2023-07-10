@@ -7,10 +7,10 @@ class TranslationChannel(db.Model):
     __tablename__ = "translation_channels"
     id = db.Column(db.Integer, primary_key=True)
     video_stream_id = db.Column(
-        db.Integer, db.ForeignKey('video_streams.id', ondelete='CASCADE'), unique=True
+        db.Integer, db.ForeignKey('video_streams.id', ondelete='CASCADE')
     )
     video_stream = db.relationship(
-        'VideoStream', backref=backref('video_stream', uselist=False))
+        'VideoStream', backref=backref('video_stream'))
 
     channel_id = db.Column(
         db.Integer, db.ForeignKey('video_channels.id', ondelete='CASCADE')

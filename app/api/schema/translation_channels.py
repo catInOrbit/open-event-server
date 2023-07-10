@@ -30,7 +30,7 @@ from app.api.helpers.utilities import dasherize
 
 
 class TranslationChannelSchema(Schema):
-    id = fields.Str(dump_only=True)
+    id = fields.Integer(required=True)
     # video_stream_id = fields.Integer(required=True, load_only=True)
     # channel_id = fields.Integer(required=True, load_only=True)
     name = fields.String(required=True)
@@ -45,8 +45,7 @@ class TranslationChannelSchema(Schema):
         type_="video_stream",
     )
 
-    channels = Relationship(
-        many=True,
+    channel= Relationship(
         self_view="v1.translation_channels_channel",
         self_view_kwargs={"id": "<id>"},
         related_view="v1.video_channel_detail",

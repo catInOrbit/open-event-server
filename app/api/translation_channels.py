@@ -44,7 +44,7 @@ class TranslationChannelsList(ResourceList):
 class TranslationChannelsListPost(ResourceList):
     schema = TranslationChannelSchema
     methods = [
-        'POST',
+        'POST'
     ]
     data_layer = {
         'session': db.session,
@@ -55,6 +55,9 @@ class TranslationChannelsListPost(ResourceList):
 
 class TranslationChannelsDetail(ResourceDetail):
     schema = TranslationChannelSchema
+    methods = [
+         'GET', 'PATCH', 'DELETE'
+    ]
     data_layer = {
         'session': db.session,
         'model': TranslationChannel,
