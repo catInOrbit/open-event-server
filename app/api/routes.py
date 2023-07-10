@@ -1875,7 +1875,7 @@ api.route(TranslationChannelsDetail, 'translation_channels_detail', '/translatio
 
 api.route(TranslationChannelsRelationship, 'translation_channels_video_stream', '/translation_channel/<int:id>/relationships/video-stream')
 
-api.route(TranslationChannelsRelationship, 'translation_channels_channel', '/translation_channel/<int:id>/relationships/channel')
+api.route(TranslationChannelsRelationship, 'translation_channels_channel', '/translation_channel/<int:id>/relationships/channels')
 
 # api.route(
 #     VideoStreamRelationship,
