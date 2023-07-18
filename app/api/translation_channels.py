@@ -1,3 +1,4 @@
+from app.api.helpers.utilities import require_relationship
 from app.api.schema.translation_channels import TranslationChannelSchema
 from app.api.schema.video_stream import VideoStreamSchema
 from app.models.translation_channels import TranslationChannel
@@ -65,15 +66,15 @@ class TranslationChannelsListPost(ResourceList):
         print("VALIDATING TranslationChannelsListPost")
         require_relationship(['video_stream', 'channel'], data)
         video_stream = db.session.query(
-                VideoStream.query.filter_by(event_id=data['video_stream']).exists()
+                VideoStream.query.filter_by(id=data['video_stream']).exists()
             ).scalar()
 
         channel = db.session.query(
-                VideoChannel.query.filter_by(event_id=data['channel']).exists()
+                VideoChannel.query.filter_by(id=data['channel']).exists()
             ).scalar()
         if not video_stream and not channel:
             raise ObjectNotFound(
-                {'parameter': 'event_id'}, "Incorrect video_stream and channel data in request body"
+                {'parameter': 'id'}, "Incorrect video_stream and channel data in request body"
             )
 
 
